@@ -2,3 +2,4 @@ curl -X POST -H 'Content-Type: application/json' -d '{"title": "foo","body": "ba
 curl https://jsonplaceholder.typicode.com/todos/1
 curl -X PUT -H 'Content-Type: application/json' -d '{"title": "foo_updated","body": "bar_updated","userId": 123}' https://jsonplaceholder.typicode.com/posts/1
 curl -X DELETE https://jsonplaceholder.typicode.com/posts/1
+curl -X POST -H 'Content-Type: application/json' -d @data.json https://jsonplaceholder.typicode.com/posts
