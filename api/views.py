@@ -1,10 +1,9 @@
-from rest_framework import serializers
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import serializers
 
-from . serializers import ItemSerializer
 from . models import Item
-
+from . serializers import ItemSerializer
 
 @api_view(['GET'])
 def get_items(request):
@@ -12,9 +11,8 @@ def get_items(request):
     serializer = ItemSerializer(items, many=True)
     return Response(serializer.data)
 
-
 @api_view(['GET'])
-def get_solo_item(request, pk):
+def get_item(request, pk):
     item = Item.objects.get(pk=pk)
     serializer = ItemSerializer(item, many=False)
     return Response(serializer.data)
@@ -22,13 +20,14 @@ def get_solo_item(request, pk):
 @api_view(['POST'])
 def create_item(request):
     data = request.data
-    post_item = Item.objects.create(item=data['item'])
-    serializer = ItemSerializer(post_item, many=False)
+    item = Item.objects.create(
+            name = data['name']
+            )
+    serializer = ItemSerializer(item, many=False)
     return Response(serializer.data)
 
-
 @api_view(['PUT'])
-def update(request,pk):    
+def update_item(request, pk):
     data = request.data
     item = Item.objects.get(pk=pk)
     serializer = ItemSerializer(instance=item, data=data)
@@ -36,21 +35,8 @@ def update(request,pk):
         serializer.save()
     return Response(serializer.data)
 
-
 @api_view(['DELETE'])
-def delete(request, pk):
+def delete_item(request, pk):
     item = Item.objects.get(pk=pk)
     item.delete()
-    return Response('Item Eliminado')
-
-
-
-
-
-
-
-
-
-
-
-
+    return Response('Item Eliminado Correctamente')
