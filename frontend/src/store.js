@@ -7,6 +7,7 @@ import {
     itemListReducer,
     itemCreateReducer,
     itemUpdateReducer,
+    itemDeleteReducer,
 } from './reducers/index.js';
 
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
     itemSolo: itemSoloReducer,
     itemCreate: itemCreateReducer,
     itemUpdate: itemUpdateReducer,
+    itemDelete: itemDeleteReducer,
 });
 
 const middleware = [thunk];

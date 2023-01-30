@@ -13,7 +13,27 @@ import {
     ITEM_UPDATE_SUCCESS,
     ITEM_UPDATE_FAIL,
     ITEM_UPDATE_RESET,
+    ITEM_DELETE_REQUEST,
+    ITEM_DELTE_SUCCESS,
+    ITEM_DELETE_FAIL, 
 } from '../constants/index.js'; 
+
+export const itemDeleteReducer = (state = {} , action ) => {
+    switch (action.type) {
+        case ITEM_DELETE_REQUEST: 
+            return { loading: true }
+
+        case ITEM_DELTE_SUCCESS:
+            return { loading: false, success: true }
+        
+
+        case ITEM_DELETE_FAIL:
+            return { loading: false, error: action.payload }
+
+        default:
+            return state
+    }
+}
 
 export const itemUpdateReducer = (state = { item : {} } , action) => {
     switch (action.type) {

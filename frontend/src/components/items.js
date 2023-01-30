@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { itemListAction } from '../actions/index.js';
+import { itemListAction, itemDeleteAction } from '../actions/index.js';
 
 
 
@@ -11,9 +11,20 @@ export default function Items () {
     const itemList = useSelector((state) => state.itemList);
     const { error, loading, items } = itemList;
 
+    const itemDelete = useSelector((state) => state.itemDelete);
+    const { error: errorDelete, loading: loadingDelete, success} = itemDelete;
+
+
     useEffect(() => {
         dispatch(itemListAction());
-    }, [dispatch])
+    }, [dispatch, success])
+
+    const deleteHandler = (id) => {
+        if (window.confirm('Quieres eliminar este blog')) {
+
+        dispatch(itemDeleteAction(id))
+        }
+    }
 
     return (
         <div>
@@ -23,6 +34,9 @@ export default function Items () {
 
                     {item.name}
                 <a href={`/solo_item/${item.id}`}>Solo Item</a>
+                <button
+                    onClick={() => deleteHandler(item.id)}
+                    > Delete Blog </button>
             </div>
             )
             })}

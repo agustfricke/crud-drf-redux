@@ -6,7 +6,7 @@ import Items from "./components/items";
 import Navbar from "./components/Navbar";
 import SoloItem from "./components/soloItem";
 import CreateItem from "./components/itemCreate";
-
+import Update from "./components/Update";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
                 <Route path="/" exact element={<Items/>}/>
                 <Route path='/solo_item/:id/' element={<SoloItem/>}/>
                 <Route path='/form/' element={<CreateItem/>}/>
+                <Route path='update/:id/' element={<Update/>}/>
             </Routes>
         </BrowserRouter>
   );
