@@ -12,12 +12,16 @@ function App() {
   return (
         <BrowserRouter>
             <Navbar/>
+
+                <div className="bg-gray-900 w-full min-h-screen">
             <Routes>
                 <Route path="/" exact element={<Items/>}/>
                 <Route path='/solo_item/:id/' element={<SoloItem/>}/>
-                <Route path='/form/' element={<CreateItem/>}/>
+                <Route path='/create/' element={<CreateItem/>}/>
                 <Route path='update/:id/' element={<Update/>}/>
             </Routes>
+      
+                </div>
         </BrowserRouter>
   );
 }

@@ -2,9 +2,10 @@ import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { itemListAction, itemDeleteAction } from '../actions/index.js';
-
-
-
+import { HiEye, HiTrash } from "react-icons/hi";
+import Loader from './Loader'
+import Error from "./Error.jsx";
+import { AiFillEdit } from "react-icons/ai";
 export default function Items () {
     const dispatch = useDispatch();
 
@@ -20,27 +21,46 @@ export default function Items () {
     }, [dispatch, success])
 
     const deleteHandler = (id) => {
-        if (window.confirm('Quieres eliminar este blog')) {
 
         dispatch(itemDeleteAction(id))
         }
-    }
 
     return (
-        <div>
+        <>
+        { error && <Error>{ error }</Error>}
+        { errorDelete && <Error>{ errorDelete } </Error>}
+        { loading && loadingDelete ? (
+            <Loader/>
+    ) : ( 
+        <>
+        <div className="flex items-center justify-center p-7">
+        <div className=" grid grid-cols-4">
             {items && items.map( item=> {
                 return (
-            <div key={item.name} >
 
+        <div className="bg-gray-300 rounded-xl flex-col item-center gap-2 text-center m-5 p-5">
+            <div key={item.name} >
+<p className="text-grey-900 font-bold text-center font-mono m-5">
                     {item.name}
-                <a href={`/solo_item/${item.id}`}>Solo Item</a>
+                    </p>
+                <div className="flex items-center justify-center mx-10">
+                <a className="text-gray-700" href={`/solo_item/${item.id}`}><HiEye size={30}/></a>
+                <a className="text-gray-700" href={`/update/${item.id}`}><AiFillEdit size={30}/></a>
                 <button
+                    className="text-red-600 "
                     onClick={() => deleteHandler(item.id)}
-                    > Delete Blog </button>
+                    > <HiTrash size={30}/> </button>
+                    </div>
             </div>
+
+</div>
             )
             })}
         </div>
+        </div>
+        </>
+    )}
+        </>
     )
 }
 

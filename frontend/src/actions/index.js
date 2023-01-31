@@ -117,7 +117,7 @@ export const itemSoloAction = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ITEM_SOLO_FAIL,
-            payload: error.repsonse && error.response.data.detail
+            payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message
         })

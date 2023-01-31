@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import { ITEM_UPDATE_RESET } from '../constants';
 import { itemUpdateAction, itemSoloAction , itemListAction } from '../actions';
 import { useNavigate } from 'react-router-dom';
+import Error from './Error';
+import Loader from './Loader';
+
 
 export default function Update () {
     const { id } = useParams();
@@ -42,11 +45,28 @@ export default function Update () {
     }
 
     return (
+
+        <>
+        { loading ? 
+            <Loader/>
+            : error ? <Error> { error } </Error>
+            :  (
         <form onSubmit={submitHandler}>
-        <input type='text' value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder='Type Here'/>
-        <button type='submit'>Save Changes</button>
+        
+                <div className="flex min-h-min items-center justify-center">
+                <div className="bg-gray-600 p-10 m-4 mt-[300px] rounded-lg">
+                <div className="w-[300px] ">
+                <input value={name} 
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder='Type here ...'
+                        className="rounded-lg placeholder:text-gray-400 p-2"
+                        type='text'/>
+                <button className="rounded-lg ml-3 bg-gray-800 text-white p-2" type="submit">EDIT</button>
+                </div>
+                </div>
+                </div>
         </form>
+            )}
+        </>
     )
 }
