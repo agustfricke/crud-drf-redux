@@ -3,8 +3,10 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function Error ({ children }) {
-      toast.error(children)
+export default function Success ({ children }) {
+      toast.error(children, {
+    toastId: 'error2',
+  })
 
     return (
 

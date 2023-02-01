@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // Components
 import Items from "./components/items";
 import Navbar from "./components/Navbar";
@@ -20,7 +21,7 @@ function App() {
                 <Route path='/create/' element={<CreateItem/>}/>
                 <Route path='update/:id/' element={<Update/>}/>
             </Routes>
-      
+                <ToastContainer/>      
                 </div>
         </BrowserRouter>
   );

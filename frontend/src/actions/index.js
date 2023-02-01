@@ -26,7 +26,7 @@ export const itemDeleteAction = (id) => async (dispatch) => {
             type: ITEM_DELETE_REQUEST
         })
 
-        const { data } = await axios.delete(`http://127.0.0.1:8000/api/delete/${id}/`)
+        await axios.delete(`http://127.0.0.1:8000/api/delete/${id}/`)
 
         dispatch({
             type: ITEM_DELTE_SUCCESS
@@ -96,9 +96,6 @@ export const itemCreateAction = (name) => async (dispatch) => {
     } catch ( error ) {
         dispatch ({ 
             type: ITEM_CREATE_FAIL,
-            payload: error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message
         })
     }
 }
@@ -139,9 +136,6 @@ export const itemListAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ITEM_LIST_FAIL,
-            payload: error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message,
         })}
 
 }

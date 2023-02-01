@@ -41,7 +41,7 @@ export const itemUpdateReducer = (state = { item : {} } , action) => {
             return { loading: true, ...state }
 
         case ITEM_UPDATE_SUCCESS:
-            return { loading: false, succes: true, items: action.payload }
+            return { loading: false, items: action.payload }
 
         case ITEM_UPDATE_FAIL:
             return { loading: false, error: action.payload }
@@ -60,10 +60,10 @@ export const itemCreateReducer = (state = {}, action ) => {
             return { loading: true, ...state }
 
         case ITEM_CREATE_SUCCESS:
-            return { loading: false, success: true, item: action.payload }
+            return { loading: false, success:true, item: action.payload }
 
         case ITEM_CREATE_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false, error: true}
         
         default:
             return state
@@ -95,7 +95,7 @@ export const itemListReducer = (state = { items: [] }, action) => {
             return { loading: false, items: action.payload }
 
         case ITEM_LIST_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false}
 
         default:
             return state

@@ -6,6 +6,7 @@ import { itemUpdateAction, itemSoloAction , itemListAction } from '../actions';
 import { useNavigate } from 'react-router-dom';
 import Error from './Error';
 import Loader from './Loader';
+import { toast } from 'react-toastify';
 
 
 export default function Update () {
@@ -38,10 +39,14 @@ export default function Update () {
 
     const submitHandler = (e) => {
         e.preventDefault()
+        if (name === '') {
+            return toast('Cant update empty data')
+        } else {
         dispatch(itemUpdateAction({id:id, name}))
         dispatch(itemListAction())
+        toast('Item updated!');
         navigate(path)
-        
+        } 
     }
 
     return (

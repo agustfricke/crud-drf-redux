@@ -1,9 +1,10 @@
-import React , { useState }from "react";
+import React , { useEffect, useState }from "react";
 import { itemCreateAction, itemListAction} from "../actions";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Loader from './Loader';
 import Error from './Error';
+import { toast } from 'react-toastify';
 
 export default function CreateItem () {
 
@@ -13,27 +14,35 @@ export default function CreateItem () {
     const path = ('/')
 
     const itemCreate = useSelector( state => state.itemCreate);
-    const { loading, error } = itemCreate;
+    const { loading, error, success} = itemCreate;
 
     const [name, setName] = useState('')
+
+    useEffect(() => {
+        if (error) {
+            toast('error bb')
+        } else {
+        }
+    }, [dispatch, error])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (name === '') {
-            return alert('Cant send empty data!')
+            return toast('Cant send empty data!')
         } else {
-        dispatch(itemCreateAction(name));
-        dispatch(itemListAction())
+            dispatch(itemCreateAction(name))
+            dispatch(itemListAction())
+            toast('Item Created!')
         navigate(path);
         }
     }
 
     return (
         <>
-        { loading ? 
+
+        { loading ? ( 
             <Loader/>
-            : error ? <Error> { error } </Error>
-            :  (
+        )  :  (
         <div>
             <form onSubmit={handleSubmit}>
                 <div className="flex min-h-min items-center justify-center">
@@ -44,12 +53,13 @@ export default function CreateItem () {
                         placeholder='Type here ...'
                         className="rounded-lg placeholder:text-gray-400 p-2"
                         type='text'/>
-                <button className="rounded-lg ml-3 bg-gray-800 text-white p-2" type="submit">POST</button>
+                <button  className="rounded-lg ml-3 bg-gray-800 text-white p-2 font-mono" type="submit">POST</button>
                 </div>
                 </div>
                 </div>
             </form>
         </div>
+
             )}
         </>
     )

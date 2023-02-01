@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Error from './Error'
 import Loader from './Loader'
 import { itemSoloAction } from '../actions/index.js';
+import { toast } from "react-toastify";
 
 export default function SoloItem () {
 
@@ -15,12 +16,15 @@ export default function SoloItem () {
     const {loading, error, item } = itemSolo;
 
     useEffect(() => {
+        if (item) {
         dispatch(itemSoloAction(id));
+        } else {
+            toast('Error just hapend')
+        }
     }, [dispatch])
 
     return (
         <>
-        { error && <Error> { error } </Error> }
         { loading ? ( 
             <Loader/>
         ) : ( 

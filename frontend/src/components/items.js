@@ -6,6 +6,9 @@ import { HiEye, HiTrash } from "react-icons/hi";
 import Loader from './Loader'
 import Error from "./Error.jsx";
 import { AiFillEdit } from "react-icons/ai";
+import { toast } from "react-toastify";
+
+
 export default function Items () {
     const dispatch = useDispatch();
 
@@ -17,18 +20,23 @@ export default function Items () {
 
 
     useEffect(() => {
-        dispatch(itemListAction());
+        if (items) {
+dispatch(itemListAction());
+        } else {
+            toast('Error!')
+        }
     }, [dispatch, success])
 
     const deleteHandler = (id) => {
-
+        if (errorDelete) {
+            toast('Error deleting item')
+        } else {
         dispatch(itemDeleteAction(id))
+        }
         }
 
     return (
         <>
-        { error && <Error>{ error }</Error>}
-        { errorDelete && <Error>{ errorDelete } </Error>}
         { loading && loadingDelete ? (
             <Loader/>
     ) : ( 
