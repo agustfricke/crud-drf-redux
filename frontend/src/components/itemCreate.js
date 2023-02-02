@@ -18,12 +18,7 @@ export default function CreateItem () {
 
     const [name, setName] = useState('')
 
-    useEffect(() => {
-        if (error) {
-            toast('error bb')
-        } else {
-        }
-    }, [dispatch, error])
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,8 +27,12 @@ export default function CreateItem () {
         } else {
             dispatch(itemCreateAction(name))
             dispatch(itemListAction())
-            toast('Item Created!')
-        navigate(path);
+            if (success) {
+                toast('Item Created!')
+                navigate(path);
+            } else {
+                toast('error bb')
+            }
         }
     }
 

@@ -36,10 +36,7 @@ export const itemDeleteAction = (id) => async (dispatch) => {
              
     } catch (error) {
         dispatch({
-            type: ITEM_DELETE_FAIL,
-            payload: error.response && error.response.data.detail 
-            ? error.response.data.detail
-            : error.message
+            ITEM_DELETE_FAIL
         })
     }
 }
@@ -70,9 +67,6 @@ export const itemUpdateAction = (item) => async (dispatch) => {
     } catch ( error ) {
         dispatch({
             type: ITEM_UPDATE_FAIL,
-            payload : error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message
         })
     }
 }
@@ -114,9 +108,6 @@ export const itemSoloAction = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ITEM_SOLO_FAIL,
-            payload: error.response && error.response.data.detail
-            ? error.response.data.detail
-            : error.message
         })
     }
 }

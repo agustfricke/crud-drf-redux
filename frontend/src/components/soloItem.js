@@ -16,12 +16,12 @@ export default function SoloItem () {
     const {loading, error, item } = itemSolo;
 
     useEffect(() => {
-        if (item) {
         dispatch(itemSoloAction(id));
+        if (item) {
         } else {
             toast('Error just hapend')
         }
-    }, [dispatch])
+    }, [dispatch, item])
 
     return (
         <>

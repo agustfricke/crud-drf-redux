@@ -44,8 +44,12 @@ export default function Update () {
         } else {
         dispatch(itemUpdateAction({id:id, name}))
         dispatch(itemListAction())
+            if (success) {
         toast('Item updated!');
         navigate(path)
+            } else {
+                toast('error updating')
+            }
         } 
     }
 

@@ -28,7 +28,7 @@ export const itemDeleteReducer = (state = {} , action ) => {
         
 
         case ITEM_DELETE_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false, error: true}
 
         default:
             return state
@@ -44,7 +44,7 @@ export const itemUpdateReducer = (state = { item : {} } , action) => {
             return { loading: false, items: action.payload }
 
         case ITEM_UPDATE_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false, error: true}
 
         case ITEM_UPDATE_RESET:
             return { item: {} }
@@ -79,7 +79,7 @@ export const itemSoloReducer = (state = { item: [] } , action) => {
             return { loading: false, item: action.payload }
 
         case ITEM_SOLO_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false, error: true}
 
         default:
             return state
@@ -95,9 +95,10 @@ export const itemListReducer = (state = { items: [] }, action) => {
             return { loading: false, items: action.payload }
 
         case ITEM_LIST_FAIL:
-            return { loading: false}
+            return { loading: false, error: true}
 
         default:
             return state
     }
 }
+
