@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { ITEM_UPDATE_RESET } from '../constants';
 import { itemUpdateAction, itemSoloAction , itemListAction } from '../actions';
 import { useNavigate } from 'react-router-dom';
-import Error from './Error';
 import Loader from './Loader';
 import { toast } from 'react-toastify';
 
@@ -58,7 +57,6 @@ export default function Update () {
         <>
         { loading ? 
             <Loader/>
-            : error ? <Error> { error } </Error>
             :  (
         <form onSubmit={submitHandler}>
         

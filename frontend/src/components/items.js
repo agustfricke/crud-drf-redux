@@ -6,7 +6,6 @@ import { HiEye, HiTrash } from "react-icons/hi";
 import Loader from './Loader'
 import { AiFillEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
-import Error from './Error';
 
 export default function Items () {
     const dispatch = useDispatch();

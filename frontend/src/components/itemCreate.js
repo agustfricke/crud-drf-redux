@@ -3,7 +3,6 @@ import { itemCreateAction, itemListAction} from "../actions";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Loader from './Loader';
-import Error from './Error';
 import { toast } from 'react-toastify';
 
 export default function CreateItem () {

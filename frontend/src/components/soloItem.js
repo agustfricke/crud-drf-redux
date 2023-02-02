@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Error from './Error'
 import Loader from './Loader'
 import { itemSoloAction } from '../actions/index.js';
 import { toast } from "react-toastify";
